@@ -9,14 +9,16 @@ import { Loading } from '../components/Loading';
 export function Routes() {
 
   const [loading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<FirebaseAuthTypes.User>();
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>();
 
 
   useEffect(()=>{
     const subscriber = auth().onAuthStateChanged(response =>{
       setUser(response);
       setIsLoading(false);
-    })
+    });
+
+    return subscriber;
   }, [])
 
   if(loading){
