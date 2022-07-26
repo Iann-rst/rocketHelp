@@ -87,7 +87,7 @@ export function Home() {
         <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems="center">
           <Heading color="gray.100">Solicitações</Heading>
           <Text color="gray.200">
-            3
+            {orders.length}
           </Text>
         </HStack>
 
@@ -125,7 +125,7 @@ export function Home() {
                 mt={6}
                 textAlign="center"
               >
-                Você ainda não tem{'\n'}chamados {statusSelected === 'open' ? 'em aberto' : 'finalizados'}
+                Você ainda não tem{'\n'}solicitações {statusSelected === 'open' ? 'em aberto' : 'finalizados'}
               </Text>
             </Center>
           )}
