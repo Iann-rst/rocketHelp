@@ -40,7 +40,7 @@ export function Register() {
   
   return (
     <VStack flex={1} p={6} bg="gray.600">
-      <Header title="Nova solicitação" />
+      <Header title="Solicitação" />
 
       <Input placeholder="Número do Patrimônio" mt={4} onChangeText={setPatrimony}/>
       <Input placeholder="Descrição do problema" mt={5} flex={1} multiline textAlignVertical='top' onChangeText={setDescription}/>
