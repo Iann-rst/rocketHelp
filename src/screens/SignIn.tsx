@@ -1,6 +1,8 @@
 import auth from '@react-native-firebase/auth';
 import { useState } from 'react';
 
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+
 import {
   Heading,
   Icon,
@@ -13,6 +15,7 @@ import Logo from '../assets/logo_primary.svg';
 import { Alert } from 'react-native';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import { useNavigation } from '@react-navigation/native';
 
 
 export function SignIn() {
@@ -22,6 +25,8 @@ export function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { colors } = useTheme();
+
+  const navigation = useNavigation();
 
   //Autenticação com Firebase/Auth
   function handleSignIn() {
@@ -50,37 +55,49 @@ export function SignIn() {
     })
   }
 
+  function handleSignUp() {
+    navigation.navigate('signUp')
+  }
+
   return (
-    <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
-      <Logo />
-      <Heading color="gray.100" fontSize="xl" mt={20} mb={6}>
-        Acesse sua conta
-      </Heading>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <VStack flex={1} alignItems="center" bg="gray.600" px={8} pt={24}>
+        <Logo />
+        <Heading color="gray.100" fontSize="xl" mt={20} mb={6}>
+          Acesse sua conta
+        </Heading>
 
-      <Input
-        placeholder="E-mail"
-        mb={4}
-        InputLeftElement={<Icon as={<Envelope color={colors.gray[300]} />} ml={4} />}
-        onChangeText={setEmail}
-        autoCorrect={false}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+        <Input
+          placeholder="E-mail"
+          mb={4}
+          InputLeftElement={<Icon as={<Envelope color={colors.gray[300]} />} ml={4} />}
+          onChangeText={setEmail}
+          autoCorrect={false}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-      <Input
-        mb={8}
-        placeholder="Senha"
-        InputLeftElement={<Icon as={<Key color={colors.gray[300]} />} ml={4} />}
-        secureTextEntry
-        onChangeText={setSenha}
-      />
+        <Input
+          mb={8}
+          placeholder="Senha"
+          InputLeftElement={<Icon as={<Key color={colors.gray[300]} />} ml={4} />}
+          secureTextEntry
+          onChangeText={setSenha}
+        />
 
-      <Button
-        title="Entrar"
-        w="full"
-        onPress={handleSignIn}
-        isLoading={isLoading}
-      />
-    </VStack>
+        <Button
+          title="Entrar"
+          w="full"
+          onPress={handleSignIn}
+          isLoading={isLoading}
+        />
+
+        <Heading color="gray.100" fontSize="xs" mt={2} mb={2} textAlign="center">
+          Ainda não tem conta? faça seu cadastro.
+        </Heading>
+
+        <Button title="Cadastrar" w="full" onPress={handleSignUp} />
+      </VStack>
+    </TouchableWithoutFeedback>
   );
 }
