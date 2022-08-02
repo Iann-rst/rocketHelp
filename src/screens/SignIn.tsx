@@ -1,20 +1,18 @@
+import auth from '@react-native-firebase/auth';
 import { useState } from 'react';
-import auth from '@react-native-firebase/auth'
 
 import {
-  VStack,
   Heading,
   Icon,
-  useTheme
-
+  useTheme, VStack
 } from 'native-base';
 
 import { Envelope, Key } from 'phosphor-react-native';
 import Logo from '../assets/logo_primary.svg';
 
+import { Alert } from 'react-native';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { Alert } from 'react-native';
 
 
 export function SignIn() {
@@ -27,24 +25,24 @@ export function SignIn() {
 
   //Autenticação com Firebase/Auth
   function handleSignIn() {
-    if(!email || !senha){
+    if (!email || !senha) {
       return Alert.alert('Entrar', 'Informe e-mail e senha.');
     }
 
     setIsLoading(true);
-    auth().signInWithEmailAndPassword(email, senha).catch((error)=>{
+    auth().signInWithEmailAndPassword(email, senha).catch((error) => {
       console.log(error.code);
       setIsLoading(false);
 
-      if(error.code === 'auth/invalid-email'){
+      if (error.code === 'auth/invalid-email') {
         return Alert.alert('Entrar', 'E-mail inválido!');
       }
 
-      if(error.code === 'auth/user-not-found'){
+      if (error.code === 'auth/user-not-found') {
         return Alert.alert('Entrar', 'E-mail ou senha inválida!');
       }
 
-      if(error.code === 'auth/wrong-password'){
+      if (error.code === 'auth/wrong-password') {
         return Alert.alert('Entrar', 'E-mail ou senha inválida!');
       }
 
@@ -77,11 +75,11 @@ export function SignIn() {
         onChangeText={setSenha}
       />
 
-      <Button 
-      title="Entrar" 
-      w="full" 
-      onPress={handleSignIn}
-      isLoading={isLoading} 
+      <Button
+        title="Entrar"
+        w="full"
+        onPress={handleSignIn}
+        isLoading={isLoading}
       />
     </VStack>
   );
