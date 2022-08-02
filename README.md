@@ -1,21 +1,20 @@
-# Rocket Help
+<h1 align="center">Rocket Help</h1>
+<div align="center">
+  <img src=".github/Capa.png" alt="Capa do Projeto"/>
+</div>
 
 ## 📌 Sobre
 
-  É uma aplicação desenvolvida em react native que permite gerenciar em tempo real solicitações de manutenção e suporte a equipamentos.
+  Rocket Help é uma aplicação desenvolvida em react native que permite gerenciar em tempo real solicitações de manutenção e suporte a equipamentos.
 
 ## ⚒ Ferramentas
 
   - React Native;
   - Expo;
-  - Typescript;
   - Native Base;
+  - Typescript;
   - Integração com o banco de dados Firestore;
-  - Autenticação;
-
-## :camera: ScreenShot
-  <div align="center">
-    <img src=".github/Capa.png" alt="Capa do Projeto"/>
-  </div>
+  - Autenticação com Firebase;
+  
 
 
